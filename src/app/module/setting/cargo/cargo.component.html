@@ -1,0 +1,128 @@
+<div class="container-fluid py-3">
+    <div class=" py-3">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <h5>Products</h5>
+                        </th>
+                        <th scope="col">
+                            <h5>Name</h5>
+                        </th>
+                        <th scope="col">
+                            <h5>Price</h5>
+                        </th>
+                        <th scope="col">
+                            <h5>Quantity</h5>
+                        </th>
+                        <th scope="col">
+                            <h5>Total</h5>
+                        </th>
+                        <th scope="col">
+                            <h5>Handle</h5>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of cartData">
+                        <th scope="row">
+                            <div class="d-flex align-items-center" routerLink="../../product/{{element.id}}"
+                                routerLink="../product/{{element.id}}">
+                                <img src="{{ url+ element.id }}" class="img-fluid me-5 rounded-circle"
+                                    style="width: 80px; height: 80px;" alt="Product Image">
+                            </div>
+                        </th>
+                        <td>
+                            <p class="mb-0 mt-4">{{ element.product_name }}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{ element.price_per_piece | currency: '฿' }}</p>
+                        </td>
+                        <td>
+                            <div class="input-group quantity mt-4" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border mx-1"
+                                        (click)="updateQuantity(element, -1)">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                </div>
+                                {{ element.quantity }}
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border mx-1"
+                                        (click)="updateQuantity(element, 1)">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{ element.price_per_piece * element.quantity | currency: '฿'
+                                }}</p>
+                        </td>
+                        <td>
+                            <button class="btn btn-md rounded-circle bg-light border mt-4"
+                                (click)="removeFromCart(element.id)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row g-4 justify-content-end">
+            <div class="col-8" *ngIf="cartData.length !== 0">
+                <div class="row mb-4" *ngFor="let user of userall">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="addressSelect" class="form-label">Choose Address:</label>
+                            <select class="form-select" id="addressSelect" name="product_status"
+                                (change)="selectChang($event)">
+                                <option value="" disabled selected>Select an Address</option>
+                                <ng-container *ngFor="let address of user.addresses">
+                                    <option [value]="address.id">{{ address.fullname }}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="paymentSelect" class="form-label">Payment Method:</label>
+                            <!-- <select class="form-select" id="paymentSelect" name="paymentSelect"
+                                [(ngModel)]="paymentFormat">
+                                <option value="PromptPay">PromptPay</option>
+                                <option value="Cash on delivery">Cash on delivery</option>
+                            </select> -->
+                            <select class="form-select" id="paymentSelect" name="product_status"
+                                [(ngModel)]="paymentFormat" (change)="onPaymentChange($event)">
+                                <option value="PromptPay">PromptPay</option>
+                                <option value="Cash on delivery">Cash on delivery</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4" *ngFor="let user of userall">
+                    <div class="" *ngIf="selectedAddress">
+                        <div class="column-2">
+                            <h6>{{ selectedAddress.address }}&nbsp;{{ selectedAddress.postalcode }}&nbsp;</h6>
+                            <h6>{{ selectedAddress.phone }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4" *ngIf="cartData.length !== 0">
+                <div class="bg-light rounded">
+                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <p class="mb-0 pe-4">{{grandTotal | currency: '฿'}}</p>
+                    </div>
+                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4 "
+                        type="button" *ngIf="cartData.length !== 0 " (click)="onClickConfirm()">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

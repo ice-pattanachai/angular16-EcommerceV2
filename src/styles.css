@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+    /* --text-color: #222; */
+    --bkg-color: #eeeeee;
+    --btn-txt-color: white;
+    /* --bkg-color: transparent; */
+    --text-color: #222831;
+    --text-d-color: #FFFFFF;
+    --color-white: #ddd;
+    --color-sky: #00ADB5;
+    --color-footer: #6ebfc4;
+    --color-orange: #ff5722;
+    --text-custom: rgb(180, 0, 0);
+    margin: 0;
+    /* padding: 0; */
+    font-family: "Poppins", sans-serif;
+
+}
+
+body.dark-theme {
+    --text-color: #eee;
+    --bkg-color: #393E46;
+    --btn-txt-color: rgb(46, 43, 43);
+}
+
+.custom-text {
+    color: var(--text-custom);
+}
+
+.background-container {
+    width: 100vw;
+    height: 100vh;
+    /* background-image: url('assets/images/back.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    text-align: center;
+}
+
+
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.Layers-10 {
+    z-index: 10;
+}
+
+.Layers-9 {
+    z-index: 9;
+}
+
+.Layers-8 {
+    z-index: 8;
+}
+
+.Layers-7 {
+    z-index: 7;
+}
+
+.Layers-6 {
+    z-index: 6;
+}
+
+.Layers-5 {
+    z-index: 5;
+}
+
+.Layers-4 {
+    z-index: 4;
+}
+
+.Layers-3 {
+    z-index: 3;
+}
+
+.Layers-2 {
+    z-index: 2;
+}
+
+.Layers-1 {
+    z-index: 1;
+}
+
+.layout {
+    display: flex;
+    /* grid-template-columns: 10% 90%; */
+}

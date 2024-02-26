@@ -1,0 +1,9 @@
+<div class="layout">
+    <app-sidebar *ngIf="shouldShowSidebar()"></app-sidebar>
+    <div style="width:100%; ">
+        <!-- <app-sidebar></app-sidebar> -->
+        <div class="container-admin">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

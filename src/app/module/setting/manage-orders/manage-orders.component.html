@@ -1,0 +1,66 @@
+<div class="bodymain">
+    <section class="cart-container bg-white p-t-70 p-b-100">
+        <div class="container">
+            <div class="cart-table-container pos-relative">
+                <div class="shopping-cart-wrap bg-white">
+                    <table class="shopping-cart-table">
+                        <ng-container>
+                            <thead>
+                                <tr class="table-head">
+                                    <th class="column-1"></th>
+                                    <th class="column-2"></th>
+                                    <th class="column-3"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let product of products; let i = index">
+                                <tr class="table-row">
+                                    <td class="column-1">
+                                        <div class="cart-img-container">
+                                            <img [src]=" url+ product.id" alt="{{ product.name }}">
+                                        </div>
+                                    </td>
+                                    <td class="column-2">{{ product.product_name }}</td>
+                                    <td class="column-3"></td>
+                                </tr>
+                                <tr lass="table-row" *ngIf="orders && orders[i]">
+                                    <td class="column-1">
+                                    </td>
+                                    <td class="column-2">
+                                        ที่อยู่: {{orders[i].addresses_name}}: {{orders[i].address}}
+                                        {{orders[i].postalcode}}
+                                        phone:{{orders[i].phone}}
+                                    </td>
+                                    <td class="column-3">
+                                        จำนวนการสั่งซื้อ:{{orders[i].quantity}}
+                                    </td>
+                                </tr>
+                                <tr lass="table-row" *ngIf="orders && orders[i]">
+                                    <td class="column-1">
+                                    </td>
+                                    <td class="column-2">
+                                        ราคา: {{orders[i].total_price}}
+                                    </td>
+                                    <td class="column-3">
+                                        การชำระเงิน:{{orders[i].confirm_payment ? 'ชำระ' :'ยังไม่ชำระ'}}
+                                    </td>
+                                </tr>
+                                <tr lass="table-row" *ngIf="orders && orders[i]">
+                                    <td class="column-1">
+                                    </td>
+                                    <td class="column-2">
+                                        รหัสขนส่ง: {{orders[i].parcel_number}}
+                                    </td>
+                                    <td class="column-3">
+                                        <button mat-button class=" rounded-btn"
+                                            (click)="editOrders(orders[i].id)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </ng-container>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,51 @@
+<section *ngIf=" product">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img class="card-img-top mb-5 mb-md-0" [src]="url+ product.id" alt="{{ product.product_name }}" />
+            </div>
+            <div class="col-md-6">
+                <!-- <div class="small mb-1">SKU: BST-498</div> -->
+                <h1 class="display-5 fw-bolder">{{ product.product_name }}</h1>
+                <div class="fs-5 mb-5 custom-text">
+                    <span>{{ product.price_per_piece | currency: '฿' }}</span>
+                </div>
+                <p class="lead">{{ product.description }}</p>
+                <div class="d-flex">
+                    <input class="form-control text-center me-3" type="number" step="1" min="1" max="
+          {{ product.stock_quantity }}" [(ngModel)]="quantity" style="max-width: 3rem" />
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="addToCart(product)">
+                        <i class="bi-cart-fill me-1"></i>
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Other products</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let object of products">
+                <div class="card h-100">
+                    <img class="card-img-top" [src]="url+ object.id" alt="{{ object.product_name }}" />
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">{{ object.product_name }}</h5>
+                            <h5 class="custom-text">{{ object.price_per_piece | currency: '฿' }}</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" routerLink="../../product/{{object.id}}">
+                                View options
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,399 @@
+<!-- <tr class="odd">
+    <td class="control" tabindex="0"></td>
+    <td class="sorting_1"><span class="text-nowrap">Apr 15, 2023, 10:21</span></td>
+    <td>
+        <div class="d-flex align-items-center">
+            <div class="avatar-wrapper me-2">
+                <img src="../../assets/img/avatars/19.png" alt="Avatar" class="rounded-circle" width="40">
+            </div>
+            <div>
+                <h6 class="m-0"><a href="pages-profile-user.html" class="text-body text-decoration-none">Cristine
+                        Easom</a></h6>
+                <small class="text-muted">ceasomw@theguardian.com</small>
+            </div>
+        </div>
+    </td>
+    <td>
+        <h6 class="mb-0 text-warning"><i class="bx bxs-circle me-1"></i>Pending</h6>
+    </td>
+    <td><span class="badge bg-success">Delivered</span></td>
+    <td class="d-none d-md-table-cell">
+        <div class="d-flex align-items-center">
+            <img src="../../assets/img/icons/payments/mastercard.png" alt="mastercard" class="me-2" width="16">
+            <span class="text-muted"><i class="bx bx-dots-horizontal-rounded me-1"></i>2356</span>
+        </div>
+    </td>
+    <td class="d-none d-md-table-cell">
+        <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-dots-vertical-rounded"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="app-ecommerce-order-details.html">View</a></li>
+                <li><a class="dropdown-item delete-record" href="javascript:0;">Delete</a></li>
+            </ul>
+        </div>
+    </td>
+</tr> -->
+
+
+<div class="list-group d-flex mt-4" *ngIf="isMenuOpen">
+    <div class="container">
+        <div class="row">
+            <div class="container " *ngIf="isMenuhistor">
+                <div class="table-responsive table-bordered-floating">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="table-row align-top">
+                                <th scope="col" style="max-width: 10%;">Order</th>
+                                <th scope="col" style="max-width: 10%;">Date</th>
+                                <th scope="col" style="max-width: 10%;">Customers</th>
+                                <th scope="col" style="max-width: 30%;">Payment</th>
+                                <th scope="col" style="max-width: 30%;">Status</th>
+                                <th scope="col" style="max-width: 10%;"></th>
+                            </tr>
+                        </thead>
+                        <thead *ngFor="let receipt of receipts; let i = index">
+                            <tr class="table-row align-top">
+                                <td class="column-1 text-break" style="max-width: 10%;">
+                                    <div class=" p-2 ">{{ receipt.id }}</div>
+                                </td>
+                                <td class="column-1 text-break" style="max-width: 10%;">
+                                    <div class=" p-2 ">{{ receipt.order_receipt_number }}</div>
+                                </td>
+                                <td class="column-1 text-break" style="max-width: 10%;">
+                                    <div class=" p-2 ">{{ receipt.addresses_name }}</div>
+                                </td>
+                                <td class="column-1 text-break" style="max-width: 30%;">
+                                    <div class=" p-2 ">{{ receipt.status ? 'confirm' :
+                                        'notconfirmed' }}</div>
+                                </td>
+                                <td class="column-2 text-break" style="max-width: 30%;">
+                                    <div class=" p-2 ">{{ receipt.receipt_make_payment ? 'completed'
+                                        : 'not yetpaid'
+                                        }}</div>
+                                </td>
+                                <td class="column-2 text-end" style="max-width: 10%;">
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary me-2" (click)="getreceipt( receipt.id)"
+                                            (click)="viewreceipts(receipt)" data-bs-toggle="modal"
+                                            data-bs-target="#popupModalEdit" data-bs-target="#popupModalEdit"
+                                            style="background-color: #ff0000; border-color: #ff0000;">Edit</button>
+                                        <button class="btn btn-primary me-2" (click)="viewreceipts(receipt)"
+                                            data-bs-toggle="modal" data-bs-target="#popupModalView"
+                                            style="background-color: #00be00; border-color: #00be00;">View</button>
+                                        <button class="btn btn-primary" (click)="viewreceipts(receipt)"
+                                            data-bs-toggle="modal"
+                                            style="background-color: #0092be; border-color: #0092be;">Print</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupModalView" tabindex="-1" aria-labelledby="popupModalViewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px; width: 45%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupModalViewLabel"> Purchase order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contact_form" name="contact_form" method="post">
+                    <div class="container-fluid invoice-container">
+                        <!-- Header -->
+                        <!-- <header>
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm-7 text-center text-sm-start">
+                                    <h4 class="text-7 mb-0">Purchase order</h4>
+                                    <img id="logo" src="images/logo.png" title="Koice" alt="Koice">
+                                </div>
+                                <div class="col-sm-5 text-center text-sm-end">
+                                    <h4 class="text-7 mb-0">Purchase order</h4>
+                                </div>
+                            </div>
+                            <hr>
+                        </header> -->
+                        <main>
+                            <div class="table-responsive">
+                                <table class="table border mb-0 table-bordered">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <td class="col-4 text-1"><strong>Shipping company :
+                                                    {{receiptsview?.transport_company_name}}</strong></td>
+                                            <td class="col-2 text-center"><strong>COD</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-4 text-center">
+                                                <!-- <img [src]="barcode+'TH270457WNXQ6A'+barcodeend" alt="Image"> -->
+                                                <ng-container
+                                                    *ngIf="receiptsview?.parcel_number === 'no data'; else otherparcelnumber">
+                                                </ng-container>
+                                                <ng-template #otherparcelnumber>
+                                                    <img [src]="barcode+receiptsview?.parcel_number+barcodeend"
+                                                        alt="Image">
+                                                </ng-template>
+                                            </td>
+                                            <td class="col-2 text-center" style="vertical-align: middle ;">
+                                                <ng-container
+                                                    *ngIf="receiptsview?.payment_format === 'Cash on delivery'; else otherPayment">
+                                                    <h3 style="margin-bottom: 0;">
+                                                        {{totalall | currency: '฿'}}
+                                                    </h3>
+                                                </ng-container>
+                                                <ng-template #otherPayment>
+                                                    <h6 style="margin-bottom: 0;">
+                                                        ไม่ต้องเก็บเงิน
+                                                    </h6>
+                                                </ng-template>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="table-responsive">
+                                    <table class="table border border-top-0 mb-0">
+                                        <tbody>
+                                            <tr class="bg-light">
+                                                <td class="col-sm-2 text-1">
+                                                    <div class="order-sm-0"> <strong>Shipper:</strong>
+                                                        <address>
+                                                            <!-- {{receiptsview?.addresses_name}} | {{receiptsview?.phone}}<br>
+                                                                                            {{receiptsview?.address}}<br>
+                                                                                            {{receiptsview?.postalcode}}<br> -->
+                                                        </address>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table border border-top-0 mb-0">
+                                        <tbody>
+                                            <tr class="bg-light">
+                                                <td class="col-sm-2 text-1">
+                                                    <div class="order-sm-0"> <strong>Product delivery:</strong>
+                                                        <address>
+                                                            {{receiptsview?.addresses_name}} |
+                                                            {{receiptsview?.phone}}<br>
+                                                            {{receiptsview?.address}}<br>
+                                                            {{receiptsview?.postalcode}}<br>
+                                                        </address>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </main>
+                        <footer class="text-center mt-4">
+                            <td class="col-4 text-center">
+                                <img [src]="barcode+receiptsview?.order_receipt_number+barcodeend" alt="Image"
+                                    style="max-width: 100%; max-height: 50px;">
+                            </td>
+                        </footer>
+                        <hr>
+                        <footer class="text-center mt-4">
+                            <p class="text-1"><strong>NOTE :</strong>
+                                <i class="bi bi-scissors"></i> Please cut out this section if printing to ship products.
+                            </p>
+                        </footer>
+                        <main>
+                            <div class="row">
+                                <div class=""><strong>Order Number:</strong>
+                                    {{receiptsview?.order_receipt_number}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <strong>Status:</strong>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 order-sm-0">
+                                    Confirm order = {{receiptsview?.status? 'confirm' : 'not confirmed'}} <br>
+                                    status = {{receiptsview?.payment_format? 'normal' : 'cancel'}}
+                                </div>
+                                <div class="col-sm-6 order-sm-0">
+                                    Payment format = {{receiptsview?.payment_format}} <br>
+                                    Payment status = {{receiptsview?.receipt_make_payment? 'completed' : 'not yetpaid'}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <br>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table border mb-0 table-bordered">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <td class="col-1 text-center"><strong>code</strong></td>
+                                            <td class="col-4 text-center"><strong>Product name</strong></td>
+                                            <td class="col-1 text-center"><strong>Price</strong></td>
+                                            <td class="col-1 text-center"><strong>QTY</strong></td>
+                                            <td class="col-1 text-center"><strong>Total</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let orders of receiptsview?.purchase_orders ; let i = index">
+                                        <tr>
+                                            <td class="col-1 text-center">{{products![i].id}}</td>
+                                            <td class="col-4 text-1">{{products![i].product_name}}</td>
+                                            <td class="col-1 text-center">{{orders?.total_price / orders?.quantity |
+                                                currency: '฿'}}
+                                            </td>
+                                            <td class="col-1 text-center">{{orders?.quantity}}</td>
+                                            <td class="col-1 text-center">{{orders?.total_price | currency: '฿'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table border border-top-0 mb-0">
+                                    <tbody>
+                                        <tr class="bg-light">
+                                            <td class="text-end"><strong>Total price:</strong></td>
+                                            <td class="col-sm-2 text-end">{{totalall | currency: '฿'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </main>
+                        <footer class="text-center mt-4">
+                            <td class="col-4 text-center">
+                                <img [src]="barcode+receiptsview?.order_receipt_number+barcodeend" alt="Image"
+                                    style="max-width: 100%; max-height: 50px;">
+                            </td>
+                            <p class="text-1"><strong>NOTE :</strong> This is a purchase order. To prepare products for
+                                delivery Don't use a receipt. <br>
+                                <i class="bi bi-scissors"></i> Please cut out this section if printing to ship products.
+                            </p>
+                        </footer>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="popupModalEdit" tabindex="-1" aria-labelledby="popupModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px; width: 45%;">
+        <div class="modal-content form">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupModalEditLabel">Order Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contact_form" name="contact_form" method="post">
+                    <div class="container-fluid invoice-container">
+                        <form action="">
+                            <main *ngFor="let item of item">
+                                <div class="row">
+                                    <div class=""><strong>Order Name:</strong>
+                                        {{item?.addresses_name}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <br>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table border mb-0 table-bordered">
+                                        <thead>
+                                            <tr class="bg-light">
+                                                <td class="col-1 text-center"><strong>code</strong></td>
+                                                <td class="col-4 text-center"><strong>Product name</strong></td>
+                                                <td class="col-1 text-center"><strong>Price</strong></td>
+                                                <td class="col-1 text-center"><strong>QTY</strong></td>
+                                                <td class="col-1 text-center"><strong>Total</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let orders of receiptsview?.purchase_orders ; let i = index">
+                                            <tr>
+                                                <td class="col-1 text-center">{{products![i].id}}</td>
+                                                <td class="col-4 text-1">{{products![i].product_name}}</td>
+                                                <td class="col-1 text-center">{{orders?.total_price / orders?.quantity |
+                                                    currency: '฿'}}
+                                                </td>
+                                                <td class="col-1 text-center">{{orders?.quantity}}</td>
+                                                <td class="col-1 text-center">{{orders?.total_price | currency: '฿'}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table border border-top-0 mb-0">
+                                        <tbody>
+                                            <tr class="bg-light">
+                                                <td class="text-sm-start">ชำระเงิน :
+                                                    {{item.payment_format}}</td>
+                                                <td class="text-end"><strong>Total price:</strong></td>
+                                                <td class="col-sm-2 text-end">{{totalall | currency: '฿'}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                                <!-- <div class="row">
+                                    <br>
+                                    <hr>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-sm-6 order-sm-0">
+                                        <label class="form-label">ยืนยันคำสั่งซื้อ :</label>
+                                        <select class="form-select w-100 input-stype" [(ngModel)]="status"
+                                            [ngModelOptions]="{ standalone: true }" required>
+                                            <option [ngValue]="true">confirm</option>
+                                            <option [ngValue]="false">not confirmed</option>
+                                        </select>
+                                        <br>
+                                        <label for="name_input">ชื่อ-ขนส่ง :</label>
+                                        <input class="form-control" type="text" name="transport_company_name" required
+                                            [(ngModel)]="transport_company_name">
+                                        <br>
+                                        <label class="form-label">สถานะ :</label>
+                                        <select class="form-select w-100 input-stype" [(ngModel)]="receipt_status"
+                                            [ngModelOptions]="{ standalone: true }" required>
+                                            <option [ngValue]="true">ปกติ</option>
+                                            <option [ngValue]="false">ยกเลิกการสั่งซื้อ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 order-sm-0">
+                                        <label class="form-label">สถานะการชำระเงิน :</label>
+                                        <select class="form-select w-100 input-stype" [(ngModel)]="receipt_make_payment"
+                                            [ngModelOptions]="{ standalone: true }" required>
+                                            <option [ngValue]="true">completed</option>
+                                            <option [ngValue]="false">not yetpaid</option>
+                                        </select>
+                                        <br>
+                                        <label for="name_input">เลขพัสดุ :</label>
+                                        <input class="form-control" type="text" name="parcel_number" required
+                                            [(ngModel)]="parcel_number">
+                                        <br>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <br>
+                                    <hr>
+                                </div>
+                                <button class="btn btn-primary me-2" (click)="editReceipt()" data-bs-toggle="modal"
+                                    style="background-color: #00be00; border-color: #00be00;">ยืนยัน</button>
+                                <div class="row">
+                                    <br>
+                                </div>
+                            </main>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

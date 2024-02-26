@@ -1,0 +1,16 @@
+.shadow:hover {
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.4);
+}
+
+.container {
+    max-width: 100%;
+}
+
+.product-item .card {
+    transition: box-shadow 0.2s;
+}
+
+.product-item .card:hover {
+    /* box-shadow: 0 0 10px var(--text-custom); */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, var(--text-custom) 0px 0px 0px 1px;
+}

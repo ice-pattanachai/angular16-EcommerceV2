@@ -1,0 +1,143 @@
+.bodymain {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background: var(--color-sky);
+    border-radius: 4px;
+    padding: 10px 37px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px 40px;
+    margin: 5px;
+    width: none;
+    /* margin-right: 10px; */
+    right: 0;
+    bottom: 0;
+}
+
+button:hover {
+    background: var(--color-orange);
+    transition: ease-in 0.2s;
+}
+
+.r {
+    position: absolute;
+    right: 0;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.cart-container {
+    background-color: #fff;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.404); */
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+.shopping-cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-head th {
+    text-align: center;
+    padding: 15px;
+    background-color: #2f00af;
+    color: #fff;
+}
+
+.table-row td {
+    text-align: center;
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-img-container img {
+    max-width: 80px;
+    max-height: 80px;
+    /* max-width: 100%; */
+    height: auto;
+    border-radius: 8px;
+}
+
+.flex-w {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-input,
+.rounded-btn {
+    border-radius: 5px;
+}
+
+.coupon-input-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coupon-input,
+.apply-coupon-btn {
+    margin-bottom: 10px;
+}
+
+.update-cart-btn,
+.update-totals-btn,
+.checkout-btn {
+    margin-top: 26px;
+}
+
+.bg-primary {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.calculate-shipping {
+    cursor: pointer;
+}
+
+.select-container select,
+.text-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+}
+
+.bo4 {
+    border: 1px solid #ccc;
+}
+
+.size13,
+.size14,
+.size15 {
+    margin-bottom: 12px;
+}
+
+.m-l-auto {
+    margin-left: auto;
+}
+
+.animsition {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,127 @@
+<div class="list-group" *ngIf="isMenuOpen">
+    <div class="container table-bordered-floating">
+        <div class="row">
+            <div class="container" *ngIf="isMenuhistor">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-row align-top p-3">
+                                <td class="column-1 text-break " style="max-width: 10%;" href="">
+
+                                </td>
+                                <td class="column-1 text-break " style="max-width: 50%">
+                                    <h5>รายละเอียด</h5>
+                                </td>
+                                <td class="column-2 text-break" style="width: 130px">
+                                    <h5>ราคา</h5>
+                                </td>
+                                <td class="column-2 text-center align-end" style="width: 5%">
+                                </td>
+                            </tr>
+                            <tr class="table-row align-top" *ngFor="let product of products; let i = index">
+                                <td class="column-1 text-break " style="max-width: 10%;" href=""
+                                    routerLink="../product/{{product.id}}">
+                                    <img [src]="url + product.id" alt="Product Image" class="productimg">
+                                </td>
+                                <td class="column-1 text-break " style="max-width: 50%"
+                                    *ngIf="orderDetail && orderDetail[i] && receipts && receipts[i]">
+                                    {{product.product_name}} <br>
+                                    จำนวนการสั่งซื้อ: {{orderDetail[i].quantity}} <br> หมายเลขพัสดุ :
+                                    {{receipts[i].parcel_number}}
+                                </td>
+                                <td class="column-2 text-break" style="width: 130px"
+                                    *ngIf="orderDetail && orderDetail[i]">
+                                    <br>ราคา: {{orderDetail[i].total_price}}
+                                </td>
+                                <td class="column-2 text-center align-end" style="width: 5%"
+                                    *ngIf="orderDetail && orderDetail[i] && receipts && receipts[i]"><br>
+                                    <button class="btn btn-primary"
+                                        (click)="setSelectedOrderDetail(orderDetail[i], product ,receipts[i])"
+                                        data-bs-toggle="modal" data-bs-target="#popupModal">
+                                        view
+                                    </button>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 550px; width: 38%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="popupModalLabel">ประวัติการสั่งซื้อ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contact_form" name="contact_form" method="post">
+                    <div class="mb-3">
+                        <h6>{{ selectedOrderProduct?.product_name }}</h6>
+                        <p class="text-center">
+                            <img [src]="url + selectedOrderProduct?.id" alt="Product Image"><br>
+                        </p>
+                        <p>
+                            ที่อยู่ :{{ selectedReceipt?.addresses_name }} | {{ selectedReceipt?.phone }}
+                            <br> {{ selectedReceipt?.address }} {{ selectedReceipt?.postalcode }}<br>
+                        </p>
+                        <p>
+                            สถานะ : {{selectedReceipt?.status ? ' ยืนยันคำสั่งซื้อ' : ' รอยืนยันคำสั่งซื้อ'}} <br>
+                            หมายเลขพัสดุ : {{selectedReceipt?.parcel_number}}
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <p>
+                                จำนวนการสั่งซื้อ : {{selectedOrderDetail?.quantity}}
+                            </p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p>
+                                ราคาต่อหน่วย : {{selectedOrderDetail?.total_price/selectedOrderDetail?.quantity}} บาท
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>รูปแบบการชำระเงิน :</label>
+                            <p>
+                                {{selectedReceipt?.payment_format }}
+                            </p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>ยืนยันการชำระเงิน :</label>
+                            <p>
+                                {{selectedReceipt?.receipt_make_payment ?
+                                'ชำระ' :'ยังไม่ชำระ'}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        ราคา: {{selectedOrderDetail?.total_price}} บาท
+                    </div>
+                    <div class="mb-1" style="font-size: 12px;">
+                        เลขที่สั่งซื้อ: {{selectedReceipt?.order_receipt_number}}<br>
+                        <div class="">
+                            <img [src]="barcode+selectedReceipt?.order_receipt_number+barcodeend" alt="Image"
+                                style="width: 100%; height: auto;">
+                        </div>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <p class="text-center">
+                            <img [src]="urlpromptpay + selectedOrderProduct?.id+selectedOrderDetail?.total_price+selectedOrderDetail?.id "
+                                alt="promptpay Image"><br>
+                        </p>
+                    </div> -->
+                    <div class="mb-1" style="font-size: 12px;">
+                        *หากต้องการยกเลิกสินค้ากรุณาติดต่อผู้ขาย
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

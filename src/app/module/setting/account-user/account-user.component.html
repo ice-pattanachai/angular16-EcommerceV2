@@ -1,0 +1,75 @@
+<div *ngIf="userall">
+    <div *ngFor="let user of userall">
+        <div class="container mt-4">
+            <div class="table-responsive table-bordered-floating ">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 85%;">
+                                <h5>ที่อยู่ของฉัน</h5>
+                            </th>
+                            <th scope="col text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#popupModal">
+                                    + เพิ่มที่อยู่
+                                </button>
+                            </th>
+                        </tr>
+                        <tr class="table-row" *ngFor="let address of user?.addresses">
+                            <td class="column-1 text-break " style="max-width: 600px;">
+                                {{ address.fullname }} | {{ address.phone }} <br>
+                                {{ address.address }} {{ address.postalcode }}
+                            </td>
+                            <td class="column-2 text-center">
+                                <button class="btn btn-md rounded-circle bg-light border mt-4"
+                                    (click)="onClickDeleteAssresses(address.id)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="popupModalLabel">ที่อยู่ใหม่</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="contact_form" name="contact_form" method="post">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name_input">ชื่อ-นามสกุล</label>
+                                    <input class="form-control" type="text" name="fullname" required
+                                        [(ngModel)]="fullname">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="name_input">หมายเลขโทรศัพท์</label>
+                                    <input class="form-control" type="text" name="phone" required [(ngModel)]="phone">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message">ที่อยู่</label>
+                                <textarea class="form-control" id="message" name="address" rows="3" required
+                                    [(ngModel)]="address">
+                                                            </textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name_input">รหัสไปรษณีย์</label>
+                                <input class="form-control" type="text" name="postalcode" required
+                                    [(ngModel)]="postalcode">
+                            </div>
+                            <button type="submit" class="btn btn-primary" (click)="onClickSubmitAssresses(user.id)">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

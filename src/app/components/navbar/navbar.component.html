@@ -1,0 +1,122 @@
+<div class="superNav py-2 custom-navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerOnMobile">
+                <span
+                    class="d-none d-lg-inline-block d-md-inline-block d-sm-inline-block d-xs-none me-3 fs-6 text-white">
+                    <strong>
+                        LittleShopFront.com
+                    </strong>
+                </span>
+                <span class="me-3 fs-6 text-white">
+                    <i class="fa-solid fa-phone me-1 text-warning"></i>
+                    <strong>
+                        000-000-0000
+                    </strong>
+                </span>
+            </div>
+            <div
+                class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none d-lg-block d-md-block-d-sm-block d-xs-none text-end ">
+                <span class="me-3 ">
+                    <a class="text-decoration-none fs-6 text-white">
+                        {{ userName }}
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg custom-navbar  sticky-top navbar-light p-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand text-white fs-2" href="#">
+            <i class="fa-solid fa-shop me-2"></i>
+            <strong>LittleShopFront</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
+            <div class="input-group">
+                <span class="border-warning input-group-text bg-warning text-white"><i
+                        class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" class="form-control border-warning" style="color:#7a7a7a">
+                <button class="btn btn-warning text-white">Search</button>
+            </div>
+        </div> -->
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown" [ngSwitch]="menuType">
+            <ul class="navbar-nav ms-auto " *ngSwitchCase="'default'">
+                <li class="nav-item">
+                    <a class="nav-link mx-2  fs-5 text-white" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 fs-5 text-white" href="/shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 fs-5 text-white" href="/login/user">Login</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto " *ngSwitchCase="'seller'">
+                <ul *ngSwitchCase="'error'">
+                    <a style="color: red;">
+                        ! Error= Failed to authenticate
+                    </a>
+                </ul>
+                <!-- <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white" href="/add-proders">เพิ่มสินค้า</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white" href="/setting/receipt">ตั้งค่า</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white" href="/all">สินค้าทั้งหมด</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white" href="/manage_porders">จัดการคำสั่งซื้อ</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <form class="d-flex" style="padding-right: 15px;">
+                        <button class="btn btn-outline-light fs-5" type="submit" (click)="logout()">
+                            Logout
+                        </button>
+                    </form>
+                </li> -->
+            </ul>
+            <ul class="navbar-nav ms-auto " *ngSwitchCase="'user'">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white" href="/shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white" href="/setting/account">Setting</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link mx-2 text-uppercase fs-5 text-white"
+                        href="/purchasehistory">ประวัติการสั่งซื้อ</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <form class="d-flex fs-5 text-white" style="padding-right: 15px;">
+                        <button class="btn btn-outline-light fs-5" type="submit" (click)="logout()">
+                            Logout
+                        </button>
+                    </form>
+                </li> -->
+
+                <li class="nav-item">
+                    <a routerLink="/setting/cargo" class="text-decoration-none">
+                        <form class="d-flex fs-5 text-white">
+                            <button class="btn btn-outline-light fs-5" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                Cart
+                                <span style="color: var(--text-custom)"
+                                    class="badge bg-light custom-text ms-1 rounded-pill" *ngIf="badgeCount !== '0'">
+                                    {{badgeCount }}
+                                </span>
+                            </button>
+                        </form>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
