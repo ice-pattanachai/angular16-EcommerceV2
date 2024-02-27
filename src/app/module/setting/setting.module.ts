@@ -13,6 +13,8 @@ import { AccountUserComponent } from './account-user/account-user.component';
 import { UserPurchaseHistoryComponent } from './user-purchase-history/user-purchase-history.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { ProductsForSaleComponent } from './products-for-sale/products-for-sale.component';
+import { AddProductsComponent } from './add-products/add-products.component';
+import { EditProductsComponent } from './edit-products/edit-products.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ProductsForSaleComponent } from './products-for-sale/products-for-sale.
     AccountUserComponent,
     UserPurchaseHistoryComponent,
     ManageOrdersComponent,
-    ProductsForSaleComponent
+    ProductsForSaleComponent,
+    AddProductsComponent,
+    EditProductsComponent
   ],
   imports: [
     CommonModule,

@@ -20,7 +20,9 @@ export class SettingComponent {
       '/setting/account',
       '/setting/history',
       '/setting/manage_porders',
-      '/setting/all'
+      '/setting/all',
+      '/setting/addproducts',
+      '/setting/editproducts'
     ]
   );
 

@@ -20,25 +20,63 @@
     </div>
   </div>
 </section> -->
+
+<!-- <div class="slick-list">
+<div class="container">
+<div class="row">
+  <div class="small products-slick container" style="width: 250px;">
+    <div class="row">
+      <div class="products-tabs">
+        <div id="tab1" class="tab-pane active" *ngFor="let product of products">
+          <div class="products-slick gx-xl-5" data-nav="#slick-nav-1"  *ngIf="product.product_status && product.price_per_piece !== 0 && product.stock_quantity !== 0">
+
+            <div class="product ">
+              <div class="product-img">
+                <img src="https://themewagon.github.io/electro/img/product05.png" alt="">
+              </div>
+              <div class="product-body ">
+      
+                <h3 class="product-name "><a href="#">{{ product.product_name }}</a></h3>
+                <h4 class="product-price">{{ product.price_per_piece | currency: '฿' }} </h4>
+            </div>
+            <div class="add-to-cart">
+              <button class="add-to-cart-btn"><i class="bi bi-cart3"></i> add to cart</button>
+            </div>
+          </div>
+
+        </div>
+        <div id="slick-nav-1" class="products-slick-nav"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>   -->
+
+
+
 <section class="container">
   <div class="px-2 px-lg-4 mt-4">
     <div class="row gx-3 gx-md-4 gx-xl-5 row-cols-1 row-cols-md-2 row-cols-xl-6">
       <div class="col product-item p-1" *ngFor="let product of products">
         <div class="card h-100 border-0 rounded-0"
           *ngIf="product.product_status && product.price_per_piece !== 0 && product.stock_quantity !== 0">
-          <a href="" routerLink="../product/{{product.id}}" class="text-decoration-none">
-            <img class="card-img-top" [src]="url + product.id" alt="Product Image" />
-            <div class="p-2">
-              <div class="text-center">
-                <h5 class="fw-bolder text-dark">{{ product.product_name }}</h5>
-                <h5 class="custom-text">
-                  {{ product.price_per_piece | currency: '฿' }}
-                </h5>
+          <div class="container">
+            <a href="" routerLink="../product/{{product.id}}" class="text-decoration-none">
+              <img class="card-img-top" [src]="url + product.id" alt="Product Image" />
+              <div class="p-2">
+                <div class="text-center">
+                        <p class="fw-bolder text-dark">{{ product.product_name }}</p>
+                      <p class="custom-text" [class.mt-auto]="true">
+                        {{ product.price_per_piece | currency: '฿' }}
+                      </p>
+                      </div>
+                  </div>
+                </a>
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 </section>

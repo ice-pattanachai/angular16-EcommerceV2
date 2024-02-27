@@ -8,10 +8,10 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-detailed',
   templateUrl: './detailed.component.html',
-  styleUrls: ['./detailed.component.css']
+  styleUrls: ['./detailed.component.css'],
 })
 export class DetailedComponent implements OnInit {
-  url = `${environment.apiUrl}products_all/image?product_id=`
+  url = `${environment.apiUrl}products_all/image?product_id=`;
   product: product | undefined;
   products: product[] | undefined;
   quantity: number = 1;
@@ -20,23 +20,27 @@ export class DetailedComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private activeRoute: ActivatedRoute,
-  ) { }
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.activeRoute.params.subscribe(params => {
+    this.activeRoute.params.subscribe((params) => {
       const productId = params['id'];
-      // ทำสิ่งที่คุณต้องการด้วย productId
       if (productId) {
         this.productService.productList().subscribe((products) => {
-          // ค้นหา product ที่มี id ตรงกันใน productList
-          this.product = products.find(product => product.id == productId);
-          const randomProducts = this.getRandomProducts(products, 4);
+          const filteredProducts = products.filter(
+            (product) => product.product_status !== false
+          );
+          this.product = filteredProducts.find(
+            (product) => product.id == productId
+          );
+          const randomProducts = this.getRandomProducts(filteredProducts, 4);
           this.products = randomProducts;
         });
       }
     });
   }
+
   getRandomProducts(products: any[], count: number): any[] {
     const shuffled = products.slice(0);
     let i = products.length;
@@ -70,7 +74,9 @@ export class DetailedComponent implements OnInit {
     const existingCartData = localStorage.getItem('AddToCart');
     let cartData = existingCartData ? JSON.parse(existingCartData) : [];
 
-    const existingProduct = cartData.find((item: any) => item.id === product.id);
+    const existingProduct = cartData.find(
+      (item: any) => item.id === product.id
+    );
     if (existingProduct) {
       existingProduct.quantity += this.quantity;
     } else {
@@ -82,7 +88,7 @@ export class DetailedComponent implements OnInit {
         price_per_piece: product.price_per_piece,
         stock_quantity: product.stock_quantity,
         images: product.images,
-        quantity: this.quantity
+        quantity: this.quantity,
       };
       cartData.push(productData);
       Swal.fire({
@@ -111,7 +117,9 @@ export class DetailedComponent implements OnInit {
     const existingCartData = localStorage.getItem('AddToCart');
     if (existingCartData) {
       let cartData = JSON.parse(existingCartData);
-      const productIndex = cartData.findIndex((item: any) => item.id === productId);
+      const productIndex = cartData.findIndex(
+        (item: any) => item.id === productId
+      );
       if (productIndex !== -1) {
         cartData.splice(productIndex, 1);
         if (cartData.length === 0) {
@@ -121,9 +129,15 @@ export class DetailedComponent implements OnInit {
           localStorage.setItem('AddToCart', JSON.stringify(cartData));
         }
       } else {
-
       }
     }
   }
-}
 
+  reloadPage(productId: any): void {
+    this.router.navigate([`../../product/${productId}`]);
+    // window.location.reload();
+    setTimeout(function () {
+      window.location.reload();
+    }, 100);
+  }
+}

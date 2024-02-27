@@ -9,7 +9,7 @@
                                 <h5>ที่อยู่ของฉัน</h5>
                             </th>
                             <th scope="col text-center">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                     data-bs-target="#popupModal">
                                     + เพิ่มที่อยู่
                                 </button>
@@ -21,7 +21,7 @@
                                 {{ address.address }} {{ address.postalcode }}
                             </td>
                             <td class="column-2 text-center">
-                                <button class="btn btn-md rounded-circle bg-light border mt-4"
+                                <button class="btn btn-md rounded-circle bg-light border mt-4 "
                                     (click)="onClickDeleteAssresses(address.id)">
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -63,7 +63,7 @@
                                 <input class="form-control" type="text" name="postalcode" required
                                     [(ngModel)]="postalcode">
                             </div>
-                            <button type="submit" class="btn btn-primary" (click)="onClickSubmitAssresses(user.id)">
+                            <button type="submit" class="btn btn-outline-success" (click)="onClickSubmitAssresses(user.id)">
                                 Submit
                             </button>
                         </form>

@@ -8,6 +8,8 @@ import { AccountShopComponent } from './account-shop/account-shop.component';
 import { UserPurchaseHistoryComponent } from './user-purchase-history/user-purchase-history.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { ProductsForSaleComponent } from './products-for-sale/products-for-sale.component';
+import { AddProductsComponent } from './add-products/add-products.component';
+import { EditProductsComponent } from './edit-products/edit-products.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,10 @@ const routes: Routes = [
       { path: 'receipt', component: ReceiptComponent },
       { path: 'history', component: UserPurchaseHistoryComponent },
       { path: 'manage_porders', component: ManageOrdersComponent },
-      { path: 'all', component: ProductsForSaleComponent }
+      { path: 'all', component: ProductsForSaleComponent },
+      { path: 'addproducts', component: AddProductsComponent },
+      { path: 'editproducts', component: EditProductsComponent }
+      
     ]
   }
 ];

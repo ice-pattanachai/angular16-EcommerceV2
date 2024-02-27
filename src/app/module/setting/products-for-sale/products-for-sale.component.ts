@@ -68,6 +68,7 @@ export class ProductsForSaleComponent {
 
     this.productService.productList().subscribe((data) => {
       this.products = data;
+      console.log("🚀 ~ ProductsForSaleComponent ~ this.productService.productList ~ products:", this.products)
       this.updateProductsInCurrentPage();
     });
 

@@ -100,11 +100,13 @@ export class SellerComponent {
         console.log('⚡⚡⚡', data);
 
         this.storageService.registerUser(data);
-        // this.reloadPage();
+        this.reloadPage();
         Swal.fire({
           icon: 'success',
           title: 'register Success',
           text: 'register Success',
+           showConfirmButton: false,
+          timer: 1000,
         });
       },
     });

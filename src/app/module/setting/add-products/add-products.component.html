@@ -1,0 +1,32 @@
+<div *ngIf="!showLogin">
+    <form #productForm="ngForm" (ngSubmit)="addProduct()" enctype="multipart/form-data">
+        <h2>Add New Product</h2>
+        <a>*กรุณากรอกข้อมูลให้ครบ ก่อนกดยืนยัน </a>
+        <a>*Please fill in all information before clicking to confirm addproduct.</a>
+        <a>*หากไม่ได้ป้อนราคาและปริมาณสินค้าคงคลัง สินค้าจะไม่แสดง</a>
+        <a>*If price and stock quantity are not entered, the product won't be displayed.</a>
+        <a style="color: blue;">*If you are finished adding products, the website will reload.</a>
+        <label for="product_name">Product Name:</label>
+        <input type="text" name="product_name" [(ngModel)]="product_name" required>
+        <label for="description">Description:</label>
+        <textarea name="description" [(ngModel)]="description" required></textarea>
+        <label for="product_status">Product Status:</label>
+        <select name="product_status" [(ngModel)]="selectedProductStatus">
+            <option value="true">True | Show</option>
+            <option value="false">False | Not showing</option>
+        </select>
+        <label for="price_per_piece">Price per Piece (THB): </label>
+        <input type="number" name="price_per_piece" [(ngModel)]="price_per_piece" required>
+        <label for="stock_quantity">Stock Quantity:</label>
+        <input type="number" name="stock_quantity" [(ngModel)]="stock_quantity" required>
+        <label for="image">Image:</label>
+        <input type="file" name="image" (change)="onFileSelected($event)" required>
+        <div *ngIf="productForm.invalid && productForm.dirty" style="color: red;">
+            !Please fill in all required fields.
+        </div>
+
+        <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+        <!-- <button type="button" (click)="addProduct()">Add Product</button> -->
+    </form>
+    <div *ngIf="addProductMessage">{{ addProductMessage }}</div>
+</div>

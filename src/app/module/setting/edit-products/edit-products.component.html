@@ -1,0 +1,23 @@
+<div *ngIf="!showLogin">
+    <form #productForm="ngForm" enctype="multipart/form-data">
+        <h2>Update Product</h2>
+        <label for="product_name">Product Name:</label>
+        <input type="text" name="product_name" [(ngModel)]="product_name" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" [(ngModel)]="description" required></textarea>
+
+        <label for="product_status">Product Status:</label>
+        <select name="product_status" [(ngModel)]="product_status">
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+
+        <label for="price_per_piece">Price per Piece (THB):</label>
+        <input type="number" name="price_per_piece" [(ngModel)]="price_per_piece" required>
+
+        <label for="stock_quantity">Stock Quantity:</label>
+        <input type="number" name="stock_quantity" [(ngModel)]="stock_quantity" required>
+        <button type="button" (click)="onClickEditProduct()">Update Product</button>
+    </form>
+</div>

@@ -3,7 +3,12 @@ button.nav-link.text-dark.active {
     color: #ff0000;
 }
 
-.table-bordered-floating {
+/* .table-bordered-floating {
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.288);
     border-radius: 10px;
 }
+
+#sidebar {
+    height: 100vh;
+    overflow-y: auto;
+} */

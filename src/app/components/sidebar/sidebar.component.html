@@ -3,25 +3,30 @@
         <div *ngFor="let seller of sellerall">
             <div class="container-fluid table-bordered-floating " style="width: 220px;">
                 <div class="row">
-                    <nav id="sidebar" class=" d-md-block bg-light sidebar min-vh-100">
-                        <div class="position-sticky">
+                    <nav id="sidebar" class=" d-md-block sidebar " >
+                        <div class="position-sticky ">
                             <ul class="nav flex-column mt-4">
                                 <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                     <button class="nav-link text-dark" [routerLink]="['/setting/account-shop']">
-                                        <i class="bi bi-person"></i> <span class="ms-2"> บัญชี</span>
+                                        <i class="bi bi-person text-primary"></i> <span class="ms-2"> บัญชี</span>
                                     </button>
                                 </li>
                                 <li class="" style="margin-bottom: 5px; font-size: 17px;">
-                                    <button class="nav-link text-dark" [routerLink]="['/index']">
-                                        <i class="bi bi-gear"></i>
-                                        <span class="ms-2"> ร้านค้า</span>
+                                    <button class="nav-link text-dark" [routerLink]="['/setting/addproducts']">
+                                    <i class="bi bi-cart-plus text-info"></i> <span class="ms-2"> เพิ่มสินค้า</span>
                                     </button>
                                 </li>
                                 <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                     <button class="nav-link text-dark" [routerLink]="['/setting/all']">
-                                        <i class="bi bi-cart3"></i> <span class="ms-2"> สินค้าทั้งหมด</span>
+                                        <i class="bi bi-cart3 "></i> <span class="ms-2"> สินค้าทั้งหมด</span>
                                     </button>
                                 </li>
+                                <!-- <li class="" style="margin-bottom: 5px; font-size: 17px;">
+                                    <button class="nav-link text-dark" [routerLink]="['/index']">
+                                        <i class="bi bi-gear "></i>
+                                        <span class="ms-2"> ร้านค้า</span>
+                                    </button>
+                                </li> -->
                                 <!-- <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                     <button class="nav-link text-dark" [routerLink]="['/setting/manage_porders']">
                                         <i class="bi bi-pin-angle"></i> <span class="ms-2"> จักการคำสั่งซื้อ</span>
@@ -29,13 +34,13 @@
                                 </li> -->
                                 <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                     <button class="nav-link text-dark" [routerLink]="['/setting/receipt']">
-                                        <i class="bi bi-receipt-cutoff"></i> <span class="ms-2"> ใบเสร็จ /
+                                        <i class="bi bi-receipt-cutoff text-success"></i> <span class="ms-2"> ใบเสร็จ /
                                             จักการ</span>
                                     </button>
                                 </li>
                                 <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                     <button class="nav-link text-dark" (click)="logoutSwal()">
-                                        <i class="bi bi-person-x"></i> <span class="ms-2"> ออกจากระบบ</span>
+                                        <i class="bi bi-person-x text-danger"></i> <span class="ms-2"> ออกจากระบบ</span>
                                     </button>
                                 </li>
 
@@ -50,14 +55,14 @@
     <div *ngIf="userall">
         <ul *ngSwitchCase="'user'" class="list-group">
             <div *ngFor="let user of userall">
-                <div class="container-fluid table-bordered-floating" style="width: 220px;">
+                <div class="container-fluid table-bordered-floating" style="width: 220px; ">
                     <div class="row">
-                        <nav id="sidebar" class=" d-md-block bg-light sidebar min-vh-100">
+                        <nav id="sidebar" class=" d-md-block sidebar min-vh-100 ">
                             <div class="position-sticky">
                                 <ul class="nav flex-column mt-3">
                                     <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                         <button class="nav-link text-dark" [routerLink]="['/setting/account']">
-                                            <i class="bi bi-person"></i> <span class="ms-2"> บัญชี</span>
+                                            <i class="bi bi-person text-primary"></i> <span class="ms-2"> บัญชี</span>
                                         </button>
                                     </li>
                                     <li class="" style="margin-bottom: 5px; font-size: 17px;">
@@ -67,17 +72,17 @@
                                     </li>
                                     <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                         <button class="nav-link text-dark" [routerLink]="['/setting/history']">
-                                            <i class="bi bi-cart3"></i> <span class="ms-2"> ประวัติการสั่งซื้อ</span>
+                                            <i class="bi bi-clipboard2 text-info"></i> <span class="ms-2"> ประวัติการสั่งซื้อ</span>
                                         </button>
                                     </li>
-                                    <li class="" style="margin-bottom: 5px; font-size: 17px;">
+                                    <!-- <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                         <button class="nav-link text-dark" [routerLink]="['/index']">
                                             <i class="bi bi-receipt-cutoff"></i> <span class="ms-2"> ใบเสร็จ</span>
                                         </button>
-                                    </li>
+                                    </li> -->
                                     <li class="" style="margin-bottom: 5px; font-size: 17px;">
                                         <button class="nav-link text-dark" (click)="logoutSwal()">
-                                            <i class="bi bi-person-x"></i> <span class="ms-2"> ออกจากระบบ</span>
+                                            <i class="bi bi-person-x text-danger"></i> <span class="ms-2"> ออกจากระบบ</span>
                                         </button>
                                     </li>
                                 </ul>
