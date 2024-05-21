@@ -42,9 +42,9 @@
 </div> -->
 
 <section class="container">
-    <div class="px-2 px-lg-4 mt-1 py-5">
+    <div class="px-2 px-lg-4 mt-1 py-5 p-1">
         <div class="row gx-3 gx-md-4 gx-xl-5 row-cols-1 row-cols-md-2 row-cols-xl-6">
-            <div class="col product-item" *ngFor="let product of products">
+            <div class="col product-item py-1" *ngFor="let product of products">
                 <div class="card h-100 border-0 rounded-0 ">
                     <a href="setting/editproducts" (click)="editProduct(product.id)" class="text-decoration-none">
                         <img class="card-img-top" [src]=" url+ product.id" alt="Product Image" />
